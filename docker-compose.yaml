@@ -1,0 +1,12 @@
+# docker-compose.yml
+services:
+  floci-az:
+    image: floci/floci-az:latest
+    ports:
+      - "4577:4577"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   # for container-backed services (SQL, Postgres, …)
+      - ./data:/app/data                            # persist the generated cert across restarts
+    environment:
+      FLOCI_AZ_TLS_ENABLED: "true"
+      FLOCI_AZ_SERVICES_VM_MOCKED: "false"
